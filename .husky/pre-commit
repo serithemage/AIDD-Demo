@@ -8,6 +8,10 @@ cd frontend
 echo " 타입 체크 중..."
 npm run typecheck || exit 1
 
+# 린트 체크
+echo " 린트 체크 중..."
+npm run lint || exit 1
+
 # 테스트
 echo " 테스트 실행 중..."
 npm test || exit 1

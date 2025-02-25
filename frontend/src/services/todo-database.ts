@@ -11,10 +11,10 @@ export class TodoDatabase extends Dexie {
 
   constructor() {
     super('TodoDatabase');
-    
+
     // 데이터베이스 스키마 정의
     this.version(1).stores({
-      todos: '++id, title, status, createdAt, updatedAt'
+      todos: '++id, title, status, createdAt, updatedAt',
     });
   }
 
@@ -27,7 +27,7 @@ export class TodoDatabase extends Dexie {
       ...dto,
       status: dto.status || 'todo',
       createdAt: now,
-      updatedAt: now
+      updatedAt: now,
     };
 
     const id = await this.todos.add(todo);
@@ -47,7 +47,7 @@ export class TodoDatabase extends Dexie {
   async updateTodo(id: number, updates: Partial<TodoItem>): Promise<void> {
     await this.todos.update(id, {
       ...updates,
-      updatedAt: new Date()
+      updatedAt: new Date(),
     });
   }
 

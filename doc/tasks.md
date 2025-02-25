@@ -1,16 +1,16 @@
 # 📝 TODO 애플리케이션 작업 목록
 
 ## 1. 🚀 프로젝트 초기 설정
-- [ ] 🔧 React + TypeScript 프로젝트 생성 (create-react-app 또는 Vite 사용)
-- [ ] 🎨 Tailwind CSS 설정
+- [x] 🔧 React + TypeScript 프로젝트 생성 (create-react-app 또는 Vite 사용)
+- [x] 🎨 Tailwind CSS 설정
 - [ ] ✨ ESLint + Prettier 설정
-- [ ] 📦 GitHub 저장소 생성 및 초기 커밋
+- [x] 📦 GitHub 저장소 생성 및 초기 커밋
 - [ ] 🌐 GitHub Pages 배포 설정
 
 ## 2. 💾 데이터베이스 설정
-- [ ] 📥 Dexie.js 설치 및 설정
-- [ ] 📊 Todo 테이블 스키마 정의
-- [ ] 🔄 데이터베이스 CRUD 작업을 위한 유틸리티 함수 작성
+- [x] 📥 Dexie.js 설치 및 설정
+- [x] 📊 Todo 테이블 스키마 정의
+- [x] 🔄 데이터베이스 CRUD 작업을 위한 유틸리티 함수 작성
 
 ## 3. 🎯 UI 컴포넌트 개발
 - [ ] 📱 레이아웃 컴포넌트 작성
@@ -51,7 +51,7 @@
 - [ ] 🌐 오프라인 지원 구현
 
 ## 7. 🧪 테스트 및 품질 관리
-- [ ] ✅ 컴포넌트 단위 테스트 작성
+- [x] ✅ 컴포넌트 단위 테스트 작성
 - [ ] 🔄 E2E 테스트 작성
 - [ ] 📊 코드 품질 점검 및 개선
 

@@ -7,13 +7,13 @@ export type TodoStatus = 'todo' | 'in-progress' | 'done' | 'hold';
  * Todo 아이템의 기본 인터페이스
  */
 export interface TodoItem {
-  id?: number;        // 자동 생성되는 primary key
-  title: string;      // 할 일 제목
-  description: string;// 상세 설명
-  dueDate?: Date;     // 마감일 (선택)
+  id?: number; // 자동 생성되는 primary key
+  title: string; // 할 일 제목
+  description: string; // 상세 설명
+  dueDate?: Date; // 마감일 (선택)
   status: TodoStatus; // 상태
-  createdAt: Date;    // 생성일
-  updatedAt: Date;    // 수정일
+  createdAt: Date; // 생성일
+  updatedAt: Date; // 수정일
 }
 
 /**
