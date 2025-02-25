@@ -1,0 +1,15 @@
+#!/usr/bin/env sh
+. "$(dirname -- "$0")/_/husky.sh"
+
+# frontend 디렉토리로 이동
+cd frontend
+
+# 타입스크립트 타입 체크
+echo " 타입 체크 중..."
+npm run typecheck || exit 1
+
+# 테스트
+echo " 테스트 실행 중..."
+npm test || exit 1
+
+echo " 모든 검사가 통과되었습니다!"

@@ -1,0 +1,28 @@
+{
+  "name": "aidd-demo",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "directories": {
+    "doc": "doc"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "prepare": "husky install"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/serithemage/AIDD-Demo.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/serithemage/AIDD-Demo/issues"
+  },
+  "homepage": "https://github.com/serithemage/AIDD-Demo#readme",
+  "devDependencies": {
+    "husky": "^8.0.0"
+  }
+}
