@@ -1,74 +1,54 @@
 import Dexie, { Table } from 'dexie';
-import { TodoItem, CreateTodoDTO } from '../types/todo';
+import { Todo } from '../types/todo';
 
 /**
- * Todo 데이터베이스 클래스
- * Dexie를 확장하여 IndexedDB를 관리합니다.
+ * TodoDatabase 클래스는 IndexedDB를 사용하여 할 일 목록을 관리합니다.
  */
 export class TodoDatabase extends Dexie {
-  // Todo 테이블 정의
-  todos!: Table<TodoItem>;
+  private todos!: Table<Todo>;
 
   constructor() {
     super('TodoDatabase');
-
-    // 데이터베이스 스키마 정의
     this.version(1).stores({
-      todos: '++id, title, status, createdAt, updatedAt',
+      todos: 'id',
     });
   }
 
   /**
-   * 새로운 Todo 아이템을 생성합니다.
+   * 모든 할 일 목록을 조회합니다.
    */
-  async addTodo(dto: CreateTodoDTO): Promise<TodoItem> {
-    const now = new Date();
-    const todo: TodoItem = {
-      ...dto,
-      status: dto.status || 'todo',
-      createdAt: now,
-      updatedAt: now,
-    };
-
-    const id = await this.todos.add(todo);
-    return { ...todo, id };
-  }
-
-  /**
-   * ID로 Todo 아이템을 조회합니다.
-   */
-  async getTodo(id: number): Promise<TodoItem | undefined> {
-    return this.todos.get(id);
-  }
-
-  /**
-   * Todo 아이템을 수정합니다.
-   */
-  async updateTodo(id: number, updates: Partial<TodoItem>): Promise<void> {
-    await this.todos.update(id, {
-      ...updates,
-      updatedAt: new Date(),
-    });
-  }
-
-  /**
-   * Todo 아이템을 삭제합니다.
-   */
-  async deleteTodo(id: number): Promise<void> {
-    await this.todos.delete(id);
-  }
-
-  /**
-   * 모든 Todo 아이템을 조회합니다.
-   */
-  async getAllTodos(): Promise<TodoItem[]> {
+  async getAllTodos(): Promise<Todo[]> {
     return this.todos.toArray();
   }
 
   /**
-   * 상태별로 Todo 아이템을 필터링하여 조회합니다.
+   * 새로운 할 일을 추가합니다.
    */
-  async getTodosByStatus(status: TodoItem['status']): Promise<TodoItem[]> {
-    return this.todos.where('status').equals(status).toArray();
+  async addTodo(todo: Todo): Promise<void> {
+    await this.todos.add(todo);
+  }
+
+  /**
+   * 할 일의 완료 상태를 토글합니다.
+   */
+  async toggleTodo(id: string): Promise<boolean> {
+    const todo = await this.todos.get(id);
+    if (todo) {
+      await this.todos.update(id, { completed: !todo.completed });
+      return true;
+    }
+    return false;
+  }
+
+  /**
+   * 할 일을 삭제합니다.
+   */
+  async deleteTodo(id: string): Promise<void> {
+    await this.todos.delete(id);
   }
 }
+
+/**
+ * TodoDatabase의 전역 인스턴스
+ */
+export const db = new TodoDatabase();

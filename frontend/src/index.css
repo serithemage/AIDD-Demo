@@ -143,6 +143,35 @@ body {
   margin-top: 0.5rem;
 }
 
+/* Todo Filter Styles */
+.todo-filter {
+  margin-bottom: 1rem;
+}
+
+.filter-select {
+  width: 100%;
+  padding: 0.5rem;
+  border: 1px solid #e5e7eb;
+  border-radius: 0.375rem;
+  background-color: #fff;
+  color: #374151;
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+  cursor: pointer;
+}
+
+.dark .filter-select {
+  background-color: #1f2937;
+  border-color: #374151;
+  color: #e5e7eb;
+}
+
+.filter-select:focus {
+  outline: none;
+  ring: 2px;
+  ring-color: #3b82f6;
+}
+
 /* Todo List Styles */
 .todo-list {
   list-style: none;
@@ -226,6 +255,26 @@ body {
   text-align: center;
   color: #6b7280;
   padding: 2rem 0;
+}
+
+/* Loading and Error Styles */
+.loading-container,
+.error-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 2rem;
+  text-align: center;
+}
+
+.loading-message {
+  color: #6b7280;
+  font-size: 1rem;
+}
+
+.error-container .error-message {
+  color: #dc2626;
+  font-size: 1rem;
 }
 
 @media (min-width: 640px) {
