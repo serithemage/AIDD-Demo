@@ -3,7 +3,7 @@
 ## 1. 🚀 프로젝트 초기 설정
 - [x] 🔧 React + TypeScript 프로젝트 생성 (create-react-app 또는 Vite 사용)
 - [x] 🎨 Tailwind CSS 설정
-- [ ] ✨ ESLint + Prettier 설정
+- [x] ✨ ESLint + Prettier 설정
 - [x] 📦 GitHub 저장소 생성 및 초기 커밋
 - [ ] 🌐 GitHub Pages 배포 설정
 
