@@ -1,22 +1,49 @@
+import { useState, useCallback } from 'react';
 import { Layout } from './components/layout/Layout';
+import { MainContent } from './components/layout/MainContent';
+import { TodoList } from './components/todo/TodoList';
+import { Todo } from './types/todo';
 
 function App() {
+  const [isDarkMode, setIsDarkMode] = useState(false);
+  const [todos, setTodos] = useState<Todo[]>([]);
+
+  const handleToggleDarkMode = useCallback(() => {
+    setIsDarkMode(prev => !prev);
+    document.documentElement.classList.toggle('dark');
+  }, []);
+
+  const handleAddTodo = useCallback((text: string) => {
+    const newTodo: Todo = {
+      id: crypto.randomUUID(),
+      text,
+      completed: false,
+      createdAt: new Date(),
+    };
+    setTodos(prev => [...prev, newTodo]);
+  }, []);
+
+  const handleToggleTodo = useCallback((id: string) => {
+    setTodos(prev =>
+      prev.map(todo =>
+        todo.id === id ? { ...todo, completed: !todo.completed } : todo
+      )
+    );
+  }, []);
+
+  const handleDeleteTodo = useCallback((id: string) => {
+    setTodos(prev => prev.filter(todo => todo.id !== id));
+  }, []);
+
   return (
-    <Layout>
-      <div className="space-y-8">
-        <div>
-          <h2 className="text-xl font-semibold text-gray-900 dark:text-white mb-4">
-            할 일 추가
-          </h2>
-          {/* Todo 입력 폼이 여기에 들어갈 예정입니다 */}
-        </div>
-        <div>
-          <h2 className="text-xl font-semibold text-gray-900 dark:text-white mb-4">
-            할 일 목록
-          </h2>
-          {/* Todo 목록이 여기에 들어갈 예정입니다 */}
-        </div>
-      </div>
+    <Layout isDarkMode={isDarkMode} onToggleDarkMode={handleToggleDarkMode}>
+      <MainContent onAddTodo={handleAddTodo}>
+        <TodoList
+          todos={todos}
+          onToggle={handleToggleTodo}
+          onDelete={handleDeleteTodo}
+        />
+      </MainContent>
     </Layout>
   );
 }
